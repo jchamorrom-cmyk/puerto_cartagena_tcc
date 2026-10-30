@@ -1,12 +1,14 @@
 import pandas as pd
 import plotly.express as px
 import streamlit as st
+from pathlib import Path
 
 st.set_page_config(page_title="Logística portuaria", layout="wide")
 
 @st.cache_data
 def cargar():
-    return pd.read_csv("puerto_limpio.csv", parse_dates=["Hora_Llegada", "Hora_Atraque"])
+    ruta = Path(__file__).parent / "puerto_limpio.csv"
+    return pd.read_csv(ruta, parse_dates=["Hora_Llegada", "Hora_Atraque"])
 
 df = cargar()
 
